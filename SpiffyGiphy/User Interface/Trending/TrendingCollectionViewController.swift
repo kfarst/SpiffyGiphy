@@ -10,16 +10,25 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class TrendingCollectionViewController: UIViewController, UINavigationControllerDelegate {
+class TrendingCollectionViewController: UIViewController, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
     fileprivate let client: GiphyApiClient
     fileprivate var observationContext = 0
     fileprivate let layout: UICollectionViewFlowLayout
+    weak var coordinator: TrendingSearchFlowCoordinator?
+    fileprivate var tapRecognizer: UITapGestureRecognizer?
 
     init(collectionViewLayout layout: UICollectionViewFlowLayout, client: GiphyApiClient) {
         self.layout = layout
         self.client = client
-        
+            
         super.init(nibName: nil, bundle: nil)
+        
+        tapRecognizer =  {
+            let g = UITapGestureRecognizer(target: self, action: #selector(TrendingCollectionViewController.blurSearchView(_:)))
+            g.delegate = self
+            return g
+        }()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,6 +49,28 @@ class TrendingCollectionViewController: UIViewController, UINavigationController
         trendingView.collectionView.register(TrendingCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+        trendingView.searchFocusView.isHidden = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(TrendingCollectionViewController.toggleKeyboard(_:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(TrendingCollectionViewController.toggleKeyboard(_:)), name: Notification.Name.UIKeyboardDidHide, object: nil)
+    }
+        
+    @objc fileprivate func toggleKeyboard(_ notification: NSNotification) {
+        if let tapRecognizer = tapRecognizer {
+            switch notification.name  {
+            case .UIKeyboardWillShow:
+                trendingView.searchFocusView.addGestureRecognizer(tapRecognizer)
+                trendingView.searchFocusView.isHidden = false
+            default:
+                trendingView.searchFocusView.removeGestureRecognizer(tapRecognizer)
+                trendingView.searchFocusView.isHidden = true
+            }
+        }
+    }
+    
+    @objc fileprivate func blurSearchView(_ sender: UITapGestureRecognizer) {
+        trendingView.searchBar.resignFirstResponder()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,7 +90,11 @@ class TrendingCollectionViewController: UIViewController, UINavigationController
         return TrendingView(
             frame: UIScreen.main.bounds,
             collectionViewLayout: layout,
-            dataSource: TrendingCollectionViewDataSource()
+            dataSource: TrendingCollectionViewDataSource(with: coordinator!)
         )
     }()
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }

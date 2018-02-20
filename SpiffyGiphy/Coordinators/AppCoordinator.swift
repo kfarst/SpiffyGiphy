@@ -8,12 +8,8 @@
 
 import UIKit
 
-protocol Coordinator: class {
-    var childCoordinators: [Coordinator] { get }
-    var rootViewController: UIViewController { get }
-}
 class AppCoordinator: Coordinator {
-    var rootViewController:UIViewController
+    var rootViewController: UIViewController
     var childCoordinators = [Coordinator]()
     
     init(with rootViewController: UIViewController) {
@@ -38,13 +34,19 @@ extension AppCoordinator: FirstLoadViewControllerDelegate {
             sectionInset: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         )
         
-        let vc = TrendingCollectionViewController(
-            collectionViewLayout: layout,
-            client: GiphyApiClient(configuration: URLSessionConfiguration.default)
-        )
-        
         let delegate = TrendingInitialLoadTransitioningDelegate()
-        vc.transitioningDelegate = delegate
+        
+        let trendingVC: TrendingCollectionViewController = {
+            let vc = TrendingCollectionViewController(
+                collectionViewLayout: layout,
+                client: GiphyApiClient(configuration: URLSessionConfiguration.default)
+            )
+            vc.transitioningDelegate = delegate
+            
+            vc.coordinator = addChildCoordinator(childCoordinator: TrendingSearchFlowCoordinator(with: vc)) as? TrendingSearchFlowCoordinator
+            
+            return vc
+        }()
         
         rootViewController.present({
             let navigationVC = SpiffyGiphyNavigationController(navigationBarClass: TrendingNavigationBar.self, toolbarClass: nil)
@@ -53,7 +55,7 @@ extension AppCoordinator: FirstLoadViewControllerDelegate {
             navigationVC.transitioningDelegate = delegate
             
             navigationVC.coordinator = self
-            navigationVC.addChildViewController(vc)
+            navigationVC.addChildViewController(trendingVC)
             
             return navigationVC
         }(), animated: true, completion: nil)

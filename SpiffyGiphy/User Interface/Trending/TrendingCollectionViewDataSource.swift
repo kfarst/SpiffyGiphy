@@ -12,6 +12,12 @@ private let reuseIdentifier = "Cell"
 
 class TrendingCollectionViewDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     var gifs: [MediaItem] = [MediaItem]()
+    fileprivate let coordinator: TrendingSearchFlowCoordinator
+    
+    init(with coordinator: TrendingSearchFlowCoordinator) {
+        self.coordinator = coordinator
+        super.init()
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return gifs.count > 0 ? gifs.count : 30
@@ -33,5 +39,10 @@ class TrendingCollectionViewDataSource: NSObject, UICollectionViewDataSource, UI
         }
         
         return cell!
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let mediaItem = gifs[indexPath.row]
+        coordinator.showDetailViewFor(mediaItem: mediaItem)
     }
 }

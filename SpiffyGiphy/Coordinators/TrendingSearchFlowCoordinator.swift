@@ -15,4 +15,14 @@ class TrendingSearchFlowCoordinator: Coordinator {
     init(with rootViewController: UIViewController) {
         self.rootViewController = rootViewController
     }
+    
+    func showDetailViewFor(mediaItem: MediaItem) {
+        guard let navVC = rootViewController.navigationController else {
+            return
+        }
+        
+        let detailVC = UIViewController()
+        
+        navVC.pushViewController(detailVC, animated: true)
+    }
 }

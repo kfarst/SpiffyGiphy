@@ -24,6 +24,7 @@
 		256806FA200CAF8F00BC5024 /* TrendingSearchFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256806F9200CAF8F00BC5024 /* TrendingSearchFlowCoordinator.swift */; };
 		256806FC200D204900BC5024 /* TrendingInitialLoadTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256806FB200D204900BC5024 /* TrendingInitialLoadTransitioningDelegate.swift */; };
 		258403D520194B850085DB97 /* MediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258403D420194B850085DB97 /* MediaItem.swift */; };
+		258A57B320328E2900DB8975 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258A57B220328E2900DB8975 /* Coordinator.swift */; };
 		259B4B8B200D9F2E00819A0E /* TrendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259B4B8A200D9F2E00819A0E /* TrendingCollectionViewCell.swift */; };
 		259B4B8D200DA06300819A0E /* TrendingCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259B4B8C200DA06300819A0E /* TrendingCollectionViewDataSource.swift */; };
 		259B4B8F200DA39900819A0E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259B4B8E200DA39900819A0E /* Theme.swift */; };
@@ -76,6 +77,7 @@
 		256806F9200CAF8F00BC5024 /* TrendingSearchFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingSearchFlowCoordinator.swift; sourceTree = "<group>"; };
 		256806FB200D204900BC5024 /* TrendingInitialLoadTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingInitialLoadTransitioningDelegate.swift; sourceTree = "<group>"; };
 		258403D420194B850085DB97 /* MediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItem.swift; sourceTree = "<group>"; };
+		258A57B220328E2900DB8975 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		259B4B8A200D9F2E00819A0E /* TrendingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCollectionViewCell.swift; sourceTree = "<group>"; };
 		259B4B8C200DA06300819A0E /* TrendingCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		259B4B8E200DA39900819A0E /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -134,14 +136,6 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		258403D3201947310085DB97 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Models;
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		259B4B90200DA57E00819A0E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,7 +169,6 @@
 		25DFFA282006030E0018D688 /* SpiffyGiphy */ = {
 			isa = PBXGroup;
 			children = (
-				258403D3201947310085DB97 /* Models */,
 				259B4B90200DA57E00819A0E /* Extensions */,
 				2542E3FB200737A1004AF9C0 /* API */,
 				25DFFA5B20070ABD0018D688 /* Coordinators */,
@@ -239,6 +232,7 @@
 			children = (
 				25DFFA57200603CA0018D688 /* AppCoordinator.swift */,
 				256806F9200CAF8F00BC5024 /* TrendingSearchFlowCoordinator.swift */,
+				258A57B220328E2900DB8975 /* Coordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -416,6 +410,7 @@
 				25192DA52028DDF200F43D95 /* KeyboardLayoutConstraint.swift in Sources */,
 				251C6FF12019553F0035F775 /* Dictionary+URLQueryParams.swift in Sources */,
 				256806FC200D204900BC5024 /* TrendingInitialLoadTransitioningDelegate.swift in Sources */,
+				258A57B320328E2900DB8975 /* Coordinator.swift in Sources */,
 				25DFFA62200711BD0018D688 /* ColumnFlowLayout.swift in Sources */,
 				2542E3FF2007391B004AF9C0 /* Endpoints.swift in Sources */,
 				259B4B8B200D9F2E00819A0E /* TrendingCollectionViewCell.swift in Sources */,

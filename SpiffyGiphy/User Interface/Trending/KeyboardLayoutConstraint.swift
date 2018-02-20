@@ -1,23 +1,19 @@
 //
 //  KeyboardLayoutConstraint.swift
-//  SpiffyGiphy
+//  Cha Chat
 //
-//  Created by Kevin Farst on 2/5/18.
-//  Copyright © 2018 Kevin Farst. All rights reserved.
+//  Created by Kevin Farst on 8/3/17.
+//  Copyright © 2017 Kevin Farst. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 public class KeyboardLayoutConstraint: NSLayoutConstraint {
-    var offset: CGFloat = 0
-    var keyboardVisibleHeight: CGFloat = 0
-    //let view: UIView
-    let constraint: NSLayoutConstraint
-    
-    init(constraint: NSLayoutConstraint) {
-        self.constraint = constraint
-        //self.view = view
-        
+    fileprivate var offset: CGFloat = 0
+    fileprivate var keyboardVisibleHeight: CGFloat = 0
+
+    override init() {
         super.init()
         
         offset = constant
@@ -26,7 +22,7 @@ public class KeyboardLayoutConstraint: NSLayoutConstraint {
         
         NotificationCenter.default.addObserver(self, selector: #selector(KeyboardLayoutConstraint.keyboardWillHide(_:)), name: Notification.Name.UIKeyboardDidHide, object: nil)
     }
-
+    
     @objc private func keyboardWillShow(_ notification: Notification) {
         if let userInfo = notification.userInfo {
             if let frameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
@@ -38,11 +34,8 @@ public class KeyboardLayoutConstraint: NSLayoutConstraint {
             switch(userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber) {
             case let (.some(duration), .some(curve)) :
                 let options = UIViewAnimationOptions(rawValue: curve.uintValue)
-                
-                constraint.constant = constant
-                
                 UIView.animate(withDuration: TimeInterval(duration.doubleValue), delay: 0, options: options, animations: {
-                    //self.view.setNeedsLayout()
+                    UIApplication.shared.keyWindow?.layoutIfNeeded()
                     return
                 }, completion: nil)
             default:
@@ -52,7 +45,7 @@ public class KeyboardLayoutConstraint: NSLayoutConstraint {
     }
     
     func updateConstant() {
-        self.constant = offset + keyboardVisibleHeight
+        self.constant = (offset + keyboardVisibleHeight) * -1
     }
     
     @objc private func keyboardWillHide(_ notification: Notification) {

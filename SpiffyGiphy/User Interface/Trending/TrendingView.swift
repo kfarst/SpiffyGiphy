@@ -11,8 +11,6 @@ import UIKit
 class TrendingView: UIView {
     var dataSource: TrendingCollectionViewDataSource
     fileprivate let layout: UICollectionViewFlowLayout
-    fileprivate var keyboardLayoutConstraint: KeyboardLayoutConstraint?
-    var bottomConstraint: NSLayoutConstraint?
 
     init(frame: CGRect, collectionViewLayout: UICollectionViewFlowLayout, dataSource: TrendingCollectionViewDataSource) {
         layout = collectionViewLayout
@@ -25,8 +23,10 @@ class TrendingView: UIView {
         collectionView.delegate = dataSource
 
         addSubview(searchBar)
-        addSubview(collectionView)
-        
+        addSubview(searchButton)
+        insertSubview(collectionView, belowSubview: searchBar)
+        insertSubview(searchFocusView, belowSubview: searchBar)
+
         setNeedsUpdateConstraints()
     }
     
@@ -37,36 +37,36 @@ class TrendingView: UIView {
     override func updateConstraints() {
         let views: [String: UIView] = [
             "searchBar": searchBar,
-            "collectionView": collectionView
+            "searchButton": searchButton,
+            "collectionView": collectionView,
+            "searchFocusView": searchFocusView
         ]
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-11-[searchBar]-11-|", options: [], metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[collectionView]-[searchBar(==40)]", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[searchBar][searchButton(==40)]|", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[collectionView]-[searchBar(==40)]", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[collectionView]-[searchButton(==searchBar)]", options: [], metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[collectionView]|", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[searchFocusView]|", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[searchFocusView]|", options: [], metrics: nil, views: views))
         
-//        let bottomConstraint = NSLayoutConstraint(item: searchBar, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -271)
-        bottomConstraint = searchBar.bottomAnchor.constraint(equalTo: bottomAnchor)
-        bottomConstraint?.constant = -271
-        //searchBar.addConstraint(bottomConstraint)
-        bottomConstraint?.isActive = true
+        let keyboardLayoutConstraint = KeyboardLayoutConstraint(item: searchBar, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -10)
 
-        keyboardLayoutConstraint = KeyboardLayoutConstraint(constraint: bottomConstraint!)
-
-        if let keyboardLayoutConstraint = keyboardLayoutConstraint {
-            searchBar.addConstraint(keyboardLayoutConstraint)
-            keyboardLayoutConstraint.isActive = true
-        }
+        addConstraint(keyboardLayoutConstraint)
+        keyboardLayoutConstraint.isActive = true
 
         super.updateConstraints()
     }
     
-    lazy private(set) var searchBar: UITextView = {
-        let s = UITextView()
+    lazy private(set) var searchBar: UITextField = {
+        let s = UITextField()
         s.backgroundColor = .white
         s.translatesAutoresizingMaskIntoConstraints = false
         s.font = UIFont.systemFont(ofSize: 20)
-        s.isEditable = true
         s.isUserInteractionEnabled = true
+        s.placeholder = "Whatcha lookin' for?"
+        s.returnKeyType = .search
+        s.enablesReturnKeyAutomatically = true
+        s.clearButtonMode = .whileEditing
         return s
     }()
     
@@ -91,4 +91,20 @@ class TrendingView: UIView {
         return c
     }()
     
+    lazy private(set) var searchFocusView: UIView = {
+      let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = .black
+        v.isUserInteractionEnabled = true
+        v.alpha = 0.5
+        return v
+    }()
+    
+    lazy private(set) var searchButton: UIButton = {
+        let b = UIButton(type: .contactAdd)
+        b.translatesAutoresizingMaskIntoConstraints = false
+        b.backgroundColor = .black
+        b.tintColor = .white
+        return b
+    }()
 }
