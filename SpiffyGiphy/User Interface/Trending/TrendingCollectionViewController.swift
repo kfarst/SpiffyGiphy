@@ -29,6 +29,15 @@ class TrendingCollectionViewController: UIViewController, UINavigationController
             return g
         }()
         
+        client.getTrending { (result) in
+            switch result {
+            case .Success(let list):
+                self.trendingView.dataSource.gifs.append(contentsOf: list.data)
+                self.trendingView.collectionView.reloadData()
+            case .Error(_), .NotFound, .ServerError(_), .ClientError(_), .UnexpectedResponse(_):
+                print("Error!")
+            }
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -73,19 +82,6 @@ class TrendingCollectionViewController: UIViewController, UINavigationController
         trendingView.searchBar.resignFirstResponder()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        client.getTrending { (result) in
-            switch result {
-            case .Success(let list):
-                self.trendingView.dataSource.gifs.append(contentsOf: list.data)
-                self.trendingView.collectionView.reloadData()
-            case .Error(_), .NotFound, .ServerError(_), .ClientError(_), .UnexpectedResponse(_):
-                print("Error!")
-            }
-        }
-    }
     lazy private(set) var trendingView: TrendingView = {
         return TrendingView(
             frame: UIScreen.main.bounds,

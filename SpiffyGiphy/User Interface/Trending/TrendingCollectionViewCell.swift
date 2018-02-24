@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Gifu
 
 class TrendingCollectionViewCell: UICollectionViewCell {
     var gifSource: GifImage? {
@@ -15,10 +16,8 @@ class TrendingCollectionViewCell: UICollectionViewCell {
             
             DispatchQueue.global().async {
                 if let url = self.gifSource?.url, let urlObj = URL(string: url), let data = try? Data(contentsOf: urlObj) {
-                    let image = UIImage(data: data)
-                    
                     DispatchQueue.main.async {
-                        self.backgroundImageView.image = image
+                        self.backgroundImageView.animate(withGIFData: data)
                         self.backgroundView = self.backgroundImageView
                     }
                 }
@@ -38,8 +37,13 @@ class TrendingCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy private(set) var backgroundImageView: UIImageView = {
-        let i = UIImageView()
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        backgroundImageView.prepareForReuse()
+    }
+    
+    lazy private(set) var backgroundImageView: GIFImageView = {
+        let i = GIFImageView()
         i.backgroundColor = .blue
         i.contentMode = .scaleAspectFill
         i.clipsToBounds = true

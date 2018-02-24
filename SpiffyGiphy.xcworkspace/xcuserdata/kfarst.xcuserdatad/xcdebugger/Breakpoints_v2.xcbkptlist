@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
-   type = "1"
+   type = "0"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SpiffyGiphy/User Interface/Trending/KeyboardLayoutConstraint.swift"
-            timestampString = "540803010.801944"
+            filePath = "SpiffyGiphy/User Interface/App/NavDelegate.swift"
+            timestampString = "541015512.492259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "keyboardWillShow(_:)"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "navigationController(_:animationControllerFor:from:to:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SpiffyGiphy/User Interface/Trending/KeyboardLayoutConstraint.swift"
-            timestampString = "540803010.80233"
+            filePath = "SpiffyGiphy/User Interface/App/NavDelegate.swift"
+            timestampString = "541015512.492651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "keyboardWillShow(_:)"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "navigationController(_:animationControllerFor:from:to:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

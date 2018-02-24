@@ -46,3 +46,14 @@ class TrendingCollectionViewDataSource: NSObject, UICollectionViewDataSource, UI
         coordinator.showDetailViewFor(mediaItem: mediaItem)
     }
 }
+
+extension TrendingCollectionViewDataSource : DynamicLayoutDelegate {
+    func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat {
+        if let image = gifs[indexPath.row].images?["original"], let height = image.height, let heightFloat = NumberFormatter().number(from: height)  {
+            return CGFloat(truncating: heightFloat)
+        } else {
+            return 100
+        }
+    }
+    
+}
