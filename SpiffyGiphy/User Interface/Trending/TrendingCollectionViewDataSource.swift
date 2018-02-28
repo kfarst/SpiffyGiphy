@@ -43,7 +43,10 @@ class TrendingCollectionViewDataSource: NSObject, UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let mediaItem = gifs[indexPath.row]
-        coordinator.showDetailViewFor(mediaItem: mediaItem)
+        
+        if let gif = mediaItem.images?["original"] {
+            coordinator.showDetailViewFor(gif)
+        }
     }
 }
 

@@ -41,6 +41,7 @@ extension GiphyApiClient {
             "Content-Type" : "application/json",
             "Accept" : "application/json"
         ]
+        config.requestCachePolicy = .returnCacheDataElseLoad
         return GiphyApiClient(configuration: config)
     }()
 }

@@ -17,4 +17,12 @@ class NavDelegate: NSObject, UINavigationControllerDelegate {
             return GifViewTransitionController(duration: TimeInterval(UINavigationControllerHideShowBarDuration), isPresenting: false, originFrame: fromVC.view.frame)
         }
     }
+    
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        print("Did show")
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        print("Will show")
+    }
 }

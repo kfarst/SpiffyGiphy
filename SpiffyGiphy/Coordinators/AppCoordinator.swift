@@ -34,14 +34,14 @@ extension AppCoordinator: FirstLoadViewControllerDelegate {
             sectionInset: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         )
         
-        let delegate = TrendingInitialLoadTransitioningDelegate()
+        let transitioningDelegate = TrendingInitialLoadTransitioningDelegate()
         
         let trendingVC: TrendingCollectionViewController = {
             let vc = TrendingCollectionViewController(
                 collectionViewLayout: layout,
-                client: GiphyApiClient(configuration: URLSessionConfiguration.default)
+                client: GiphyApiClient.shared
             )
-            vc.transitioningDelegate = delegate
+            vc.transitioningDelegate = transitioningDelegate
             
             vc.coordinator = addChildCoordinator(childCoordinator: TrendingSearchFlowCoordinator(with: vc)) as? TrendingSearchFlowCoordinator
             
@@ -50,9 +50,11 @@ extension AppCoordinator: FirstLoadViewControllerDelegate {
         
         rootViewController.present({
             let navigationVC = SpiffyGiphyNavigationController(navigationBarClass: TrendingNavigationBar.self, toolbarClass: nil)
-            let navDelegate = NavDelegate()
-            navigationVC.delegate = navDelegate
-            navigationVC.transitioningDelegate = delegate
+            
+            let delegate = NavDelegate()
+
+            navigationVC.delegate = delegate
+            navigationVC.transitioningDelegate = transitioningDelegate
             
             navigationVC.coordinator = self
             navigationVC.addChildViewController(trendingVC)

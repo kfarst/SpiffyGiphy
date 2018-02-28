@@ -14,11 +14,18 @@ class TrendingCollectionViewCell: UICollectionViewCell {
         didSet {
             backgroundView = nil
             
-            DispatchQueue.global().async {
-                if let url = self.gifSource?.url, let urlObj = URL(string: url), let data = try? Data(contentsOf: urlObj) {
-                    DispatchQueue.main.async {
-                        self.backgroundImageView.animate(withGIFData: data)
-                        self.backgroundView = self.backgroundImageView
+            if let url = self.gifSource?.url {
+                DispatchQueue.global().async {
+                    if let urlObj = URL(string: url), let data = try? Data(contentsOf: urlObj) {
+                        DispatchQueue.main.async {
+                            if let url = url as? NSString, let data = data as? NSData {
+                                GifCache.shared.setObject(data, forKey: url)
+                            }
+
+                            self.backgroundImageView.animate(withGIFData: data)
+                            self.backgroundView = self.backgroundImageView
+                            self.isUserInteractionEnabled = true
+                        }
                     }
                 }
             }
@@ -29,7 +36,9 @@ class TrendingCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         backgroundColor = .darkGray
-
+        
+        isUserInteractionEnabled = false
+        
         contentView.addSubview(backgroundImageView)
     }
     
@@ -40,11 +49,11 @@ class TrendingCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         backgroundImageView.prepareForReuse()
+        isUserInteractionEnabled = false
     }
     
     lazy private(set) var backgroundImageView: GIFImageView = {
         let i = GIFImageView()
-        i.backgroundColor = .blue
         i.contentMode = .scaleAspectFill
         i.clipsToBounds = true
         return i
