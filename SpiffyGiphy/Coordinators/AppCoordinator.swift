@@ -51,9 +51,6 @@ extension AppCoordinator: FirstLoadViewControllerDelegate {
         rootViewController.present({
             let navigationVC = SpiffyGiphyNavigationController(navigationBarClass: TrendingNavigationBar.self, toolbarClass: nil)
             
-            let delegate = NavDelegate()
-
-            navigationVC.delegate = delegate
             navigationVC.transitioningDelegate = transitioningDelegate
             
             navigationVC.coordinator = self

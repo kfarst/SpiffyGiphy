@@ -10,13 +10,18 @@ import UIKit
 
 class SpiffyGiphyNavigationController: UINavigationController, UIViewControllerTransitioningDelegate {
     weak var coordinator: Coordinator?
-    
+    fileprivate let navDelegate = NavDelegate()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let navDelegate = NavDelegate()
         delegate = navDelegate
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(delegate)
     }
 
     override func didReceiveMemoryWarning() {

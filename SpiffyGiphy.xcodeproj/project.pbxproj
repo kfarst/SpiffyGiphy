@@ -12,6 +12,7 @@
 		25192DA52028DDF200F43D95 /* KeyboardLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25192DA42028DDF200F43D95 /* KeyboardLayoutConstraint.swift */; };
 		251C6FF12019553F0035F775 /* Dictionary+URLQueryParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251C6FF02019553F0035F775 /* Dictionary+URLQueryParams.swift */; };
 		251C6FF7201A51120035F775 /* GiphyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251C6FF6201A51120035F775 /* GiphyUser.swift */; };
+		251F4BDA2051A50E00772BAC /* UserProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F4BD92051A50E00772BAC /* UserProfileImageView.swift */; };
 		25267794201C5F4B00791E07 /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25267793201C5F4B00791E07 /* GifImage.swift */; };
 		25267796201DA4F200791E07 /* GifImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25267795201DA4F200791E07 /* GifImageType.swift */; };
 		252DE0BB203F2A35002E6FED /* DynamicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252DE0BA203F2A35002E6FED /* DynamicLayout.swift */; };
@@ -24,6 +25,7 @@
 		2542E40520081B2B004AF9C0 /* NavDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2542E40420081B2B004AF9C0 /* NavDelegate.swift */; };
 		2542E40720082B0B004AF9C0 /* FirstLoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2542E40620082B0B004AF9C0 /* FirstLoadViewController.swift */; };
 		2553A0F0204501C4001D1613 /* GifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2553A0EF204501C4001D1613 /* GifViewController.swift */; };
+		2567D058204F95CB00DD6871 /* UserImagePlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2567D057204F95CB00DD6871 /* UserImagePlaceholderView.swift */; };
 		256806FA200CAF8F00BC5024 /* TrendingSearchFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256806F9200CAF8F00BC5024 /* TrendingSearchFlowCoordinator.swift */; };
 		256806FC200D204900BC5024 /* TrendingInitialLoadTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256806FB200D204900BC5024 /* TrendingInitialLoadTransitioningDelegate.swift */; };
 		257D83AD204503F500BA4284 /* GifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D83AC204503F500BA4284 /* GifView.swift */; };
@@ -33,6 +35,7 @@
 		259B4B8D200DA06300819A0E /* TrendingCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259B4B8C200DA06300819A0E /* TrendingCollectionViewDataSource.swift */; };
 		259B4B8F200DA39900819A0E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259B4B8E200DA39900819A0E /* Theme.swift */; };
 		259B4B92200DA59D00819A0E /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259B4B91200DA59D00819A0E /* UIFont.swift */; };
+		259FB28B2058EEAD0021F94F /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259FB28A2058EEAD0021F94F /* LogoView.swift */; };
 		25BA63D920226B75004B4E2A /* GifsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BA63D820226B75004B4E2A /* GifsList.swift */; };
 		25DFFA2A2006030E0018D688 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DFFA292006030E0018D688 /* AppDelegate.swift */; };
 		25DFFA312006030E0018D688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25DFFA302006030E0018D688 /* Assets.xcassets */; };
@@ -73,6 +76,7 @@
 		25192DA42028DDF200F43D95 /* KeyboardLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutConstraint.swift; sourceTree = "<group>"; };
 		251C6FF02019553F0035F775 /* Dictionary+URLQueryParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+URLQueryParams.swift"; sourceTree = "<group>"; };
 		251C6FF6201A51120035F775 /* GiphyUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyUser.swift; sourceTree = "<group>"; };
+		251F4BD92051A50E00772BAC /* UserProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageView.swift; sourceTree = "<group>"; };
 		25267793201C5F4B00791E07 /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
 		25267795201DA4F200791E07 /* GifImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageType.swift; sourceTree = "<group>"; };
 		252DE0BA203F2A35002E6FED /* DynamicLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLayout.swift; sourceTree = "<group>"; };
@@ -85,6 +89,7 @@
 		2542E40420081B2B004AF9C0 /* NavDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavDelegate.swift; sourceTree = "<group>"; };
 		2542E40620082B0B004AF9C0 /* FirstLoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirstLoadViewController.swift; path = "SpiffyGiphy/User Interface/App/FirstLoadViewController.swift"; sourceTree = SOURCE_ROOT; };
 		2553A0EF204501C4001D1613 /* GifViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifViewController.swift; sourceTree = "<group>"; };
+		2567D057204F95CB00DD6871 /* UserImagePlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImagePlaceholderView.swift; sourceTree = "<group>"; };
 		256806F9200CAF8F00BC5024 /* TrendingSearchFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingSearchFlowCoordinator.swift; sourceTree = "<group>"; };
 		256806FB200D204900BC5024 /* TrendingInitialLoadTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingInitialLoadTransitioningDelegate.swift; sourceTree = "<group>"; };
 		257D83AC204503F500BA4284 /* GifView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifView.swift; sourceTree = "<group>"; };
@@ -94,6 +99,7 @@
 		259B4B8C200DA06300819A0E /* TrendingCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		259B4B8E200DA39900819A0E /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		259B4B91200DA59D00819A0E /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		259FB28A2058EEAD0021F94F /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		25BA63D820226B75004B4E2A /* GifsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifsList.swift; sourceTree = "<group>"; };
 		25DFFA262006030E0018D688 /* SpiffyGiphy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpiffyGiphy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25DFFA292006030E0018D688 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -293,6 +299,7 @@
 				252E9AC0200E739700EB8D76 /* TrendingNavigationBar.swift */,
 				25192DA22028CBF400F43D95 /* TrendingView.swift */,
 				25192DA42028DDF200F43D95 /* KeyboardLayoutConstraint.swift */,
+				259FB28A2058EEAD0021F94F /* LogoView.swift */,
 			);
 			path = Trending;
 			sourceTree = "<group>";
@@ -302,6 +309,8 @@
 			children = (
 				2553A0EF204501C4001D1613 /* GifViewController.swift */,
 				257D83AC204503F500BA4284 /* GifView.swift */,
+				2567D057204F95CB00DD6871 /* UserImagePlaceholderView.swift */,
+				251F4BD92051A50E00772BAC /* UserProfileImageView.swift */,
 			);
 			path = Gif;
 			sourceTree = "<group>";
@@ -600,6 +609,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25E9CCBF202E9D7F0034BAE4 /* GifViewTransitionController.swift in Sources */,
+				259FB28B2058EEAD0021F94F /* LogoView.swift in Sources */,
 				25267796201DA4F200791E07 /* GifImageType.swift in Sources */,
 				2542E40520081B2B004AF9C0 /* NavDelegate.swift in Sources */,
 				259B4B92200DA59D00819A0E /* UIFont.swift in Sources */,
@@ -613,6 +623,7 @@
 				252DE0BB203F2A35002E6FED /* DynamicLayout.swift in Sources */,
 				25413D5B2047413900FE1C5C /* GifCache.swift in Sources */,
 				259B4B8F200DA39900819A0E /* Theme.swift in Sources */,
+				251F4BDA2051A50E00772BAC /* UserProfileImageView.swift in Sources */,
 				259B4B8D200DA06300819A0E /* TrendingCollectionViewDataSource.swift in Sources */,
 				252E9AC1200E739700EB8D76 /* TrendingNavigationBar.swift in Sources */,
 				25088F84200DB5A9005CD5A4 /* UIColor.swift in Sources */,
@@ -632,6 +643,7 @@
 				25DFFA2A2006030E0018D688 /* AppDelegate.swift in Sources */,
 				2542E3FD200737F7004AF9C0 /* ApiClient.swift in Sources */,
 				256806FA200CAF8F00BC5024 /* TrendingSearchFlowCoordinator.swift in Sources */,
+				2567D058204F95CB00DD6871 /* UserImagePlaceholderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

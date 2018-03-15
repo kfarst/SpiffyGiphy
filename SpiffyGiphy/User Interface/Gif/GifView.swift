@@ -16,8 +16,12 @@ class GifView: UIView {
         self.gif = gif
         
         super.init(frame: frame)
-                
-        addSubview(gifImageView)
+        
+        addSubview(scrollView)
+        
+        scrollView.addSubview(gifImageView)
+        scrollView.addSubview(titleLabel)
+        scrollView.addSubview(userInfoStackView)
         
         setNeedsUpdateConstraints()
     }
@@ -28,24 +32,33 @@ class GifView: UIView {
     
     override func updateConstraints() {
         let views: [String: UIView] = [
-            "gifImageView": gifImageView
+            "scrollView": scrollView,
+            "gifImageView": gifImageView,
+            "titleLabel": titleLabel,
+            "userInfoStackView": userInfoStackView
         ]
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[gifImageView]|", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView]|", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[scrollView]|", options: [], metrics: nil, views: views))
         
-        var gifHeight: CGFloat
+        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[gifImageView(==fullWidth)]|", options: [], metrics: ["fullWidth": frame.width], views: views))
+        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[titleLabel]-|", options: [], metrics: nil, views: views))
+        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[userInfoStackView]-|", options: [], metrics: nil, views: views))
         
-        if gif.height != nil, let heightNumber = NumberFormatter().number(from: gif.height!) {
-            let heightFloat = CGFloat(truncating: heightNumber)
-            gifHeight = (heightFloat / frame.width) * heightFloat
-        } else {
-            gifHeight = frame.width
-        }
+        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[gifImageView(==300)]-[titleLabel]-[userInfoStackView]", options: [], metrics: nil, views: views))
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[gifImageView(==gifImageHeight)]", options: [], metrics: ["gifImageHeight": gifHeight], views: views))
+        userProfileImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        userProfileImageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         super.updateConstraints()
     }
+    
+    lazy private(set) var scrollView: UIScrollView = {
+        let s = UIScrollView()
+        s.translatesAutoresizingMaskIntoConstraints = false
+        s.showsHorizontalScrollIndicator = false
+        return s
+    }()
     
     lazy private(set) var gifImageView: GIFImageView = {
         let i = GIFImageView()
@@ -53,5 +66,42 @@ class GifView: UIView {
         i.contentMode = .scaleAspectFill
         i.clipsToBounds = true
         return i
+    }()
+    
+    lazy private(set) var titleLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.textColor = .white
+        l.font = UIFont.title(size: 24)
+        l.numberOfLines = 0
+        return l
+    }()
+    
+    lazy private(set) var userProfileImageView: UserProfileImageView = {
+        let v = UserProfileImageView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+
+    lazy private(set) var usernameLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.textColor = .white
+        l.font = UIFont.title(size: 18)
+        return l
+    }()
+    
+    lazy private(set) var userInfoStackView: UIStackView = {
+        let s = UIStackView(arrangedSubviews: [
+            userProfileImageView,
+            usernameLabel
+        ])
+        
+        s.translatesAutoresizingMaskIntoConstraints = false
+        s.axis = .horizontal
+        s.alignment = .center
+        s.distribution = .fillProportionally
+        s.spacing = 5
+        return s
     }()
 }

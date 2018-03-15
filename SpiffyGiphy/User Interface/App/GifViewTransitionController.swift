@@ -33,6 +33,23 @@ class GifViewTransitionController : NSObject, UIViewControllerAnimatedTransition
         toView.alpha = isPresenting ? 0 : 1
         toView.layoutIfNeeded()
         
+        let fromVC = transitionContext.viewController(forKey: isPresenting ? UITransitionContextViewControllerKey.from : UITransitionContextViewControllerKey.to)
+        
+        let toVC = transitionContext.viewController(forKey: isPresenting ? UITransitionContextViewControllerKey.to : UITransitionContextViewControllerKey.from)
+
+        if let navBar = fromVC?.navigationController?.navigationBar as? TrendingNavigationBar {
+            UIView.animate(withDuration: 0.5, animations: {
+                if let backButton = toVC?.navigationItem {
+                    backButton.title = ""
+                }
+                
+                navBar.titleLabel.alpha = self.isPresenting ? 0 : 1
+                let xTranslation = self.isPresenting ? navBar.titleLabel.frame.origin.x + navBar.titleLabel.frame.width - navBar.logoView.frame.width - navBar.safeAreaInsets.right : 0
+
+                navBar.logoView.transform = CGAffineTransform(translationX: xTranslation, y: 0)
+            })
+        }
+
         UIView.animate(withDuration: duration, animations: {
             detailView.frame = self.isPresenting ? fromView.frame : CGRect(x: toView.frame.width, y: 0, width: toView.frame.width, height: toView.frame.height)
             detailView.alpha = self.isPresenting ? 1 : 0

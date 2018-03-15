@@ -9,6 +9,10 @@
 import UIKit
 
 class NavDelegate: NSObject, UINavigationControllerDelegate {
+    override init() {
+        super.init()
+        print("Initialized delegate")
+    }
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         switch operation {
         case .push:

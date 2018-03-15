@@ -16,10 +16,9 @@ class TrendingNavigationBar: UINavigationBar {
         addSubview(topContainer)
         addSubview(bottomContainer)
         
-        topContainer.addSubview(spiffyLogoLabel)
-        topContainer.addSubview(giffyLogoLabel)
+        topContainer.addSubview(logoView)
         topContainer.addSubview(titleLabel)
-        
+
         //bottomContainer.addSubview(searchBar)
         
         backgroundColor = .black
@@ -35,27 +34,16 @@ class TrendingNavigationBar: UINavigationBar {
         let views: [String: Any] = [
             "topContainer": topContainer,
             "bottomContainer": bottomContainer,
-            "spiffyLogoLabel": spiffyLogoLabel,
-            "giffyLogoLabel": giffyLogoLabel,
             "titleLabel": titleLabel,
-//            "searchBar": searchBar
+            "logoView": logoView
         ]
         
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[topContainer]-20-[bottomContainer]|", options: [], metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[topContainer]|", options: [], metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[bottomContainer]|", options: [], metrics: nil, views: views))
-        
-        topContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[spiffyLogoLabel][giffyLogoLabel]", options: [.alignAllCenterY], metrics: nil, views: views))
+        topContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[logoView]", options: [.alignAllCenterY], metrics: nil, views: views))
         topContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[titleLabel]-|", options: [.alignAllCenterY], metrics: nil, views: views))
-//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[spiffyLogoLabel]-|", options: [], metrics: nil, views: views))
-//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[giffyLogoLabel]-|", options: [], metrics: nil, views: views))
-//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[titleLabel]-|", options: [], metrics: nil, views: views))
-        
-        
-//        bottomContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[searchBar]-|", options: [.alignAllTrailing], metrics: nil, views: views))
-//
-//        bottomContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[searchBar]-|", options: [.alignAllTrailing], metrics: nil, views: views))
-        
+
         super.updateConstraints()
     }
 
@@ -71,21 +59,9 @@ class TrendingNavigationBar: UINavigationBar {
         return v
     }()
     
-    lazy private(set) var spiffyLogoLabel: UILabel = {
-        let l = UILabel()
+    lazy private(set) var logoView: LogoView = {
+        let l = LogoView()
         l.translatesAutoresizingMaskIntoConstraints = false
-        l.font = .logo(size: 24)
-        l.textColor = .sg_orange
-        l.text = "Spiffy"
-        return l
-    }()
-    
-    lazy private(set) var giffyLogoLabel: UILabel = {
-        let l = UILabel()
-        l.translatesAutoresizingMaskIntoConstraints = false
-        l.font = .logo(size: 24)
-        l.textColor = .sg_yellow
-        l.text = "Giffy"
         return l
     }()
     

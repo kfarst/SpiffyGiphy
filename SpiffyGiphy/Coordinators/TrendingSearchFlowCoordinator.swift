@@ -16,13 +16,13 @@ class TrendingSearchFlowCoordinator: Coordinator {
         self.rootViewController = rootViewController
     }
     
-    func showDetailViewFor(_ gif: GifImage) {
+    func showDetailViewFor(item: MediaItem, andGif gif: GifImage) {
         guard let navVC = rootViewController.navigationController else {
             return
         }
         
         navVC.pushViewController({
-          return GifViewController(gif: gif)
+          return GifViewController(item: item, gif: gif)
         }(), animated: true)
     }
 }
